@@ -118,7 +118,7 @@ El archivo está comentado por bloques. Los puntos de personalización:
 | **Los módulos del curso** | `<script>` → arreglo **`MODULOS`** (bloque **A**). Tarjetas, filtros, buscador y modal se regeneran solos |
 | Preguntas frecuentes | HTML → sección `#faq`. Duplica un `.faq__item` y mantén únicos los `id` de `aria-controls` |
 | Campos del formulario | HTML del formulario + objeto **`REGLAS`** en el bloque **H** |
-| Correo de contacto | Pie de página: `mailto:contacto@example.com` |
+| Correo de contacto | Pie de página: enlace `mailto:` de la columna «Contacto» |
 
 ---
 

@@ -229,8 +229,13 @@ el sitio sigue funcionando y simplemente no recuerda la preferencia entre visita
 
 ### 8.4 Riesgo prevenido — datos privados en un repositorio público
 
-No se incluyen correos reales, credenciales, tokens ni claves de API. El correo del pie
-de página es un valor de ejemplo marcado para reemplazar.
+No se incluyen credenciales, tokens ni claves de API en el repositorio.
+
+El correo de contacto del pie de página **sí es una dirección real**, publicada de forma
+deliberada para que el sitio tenga un canal de contacto verificable. Es una decisión
+consciente, no un descuido: un correo en una página pública queda expuesto a los robots
+que rastrean direcciones para enviar correo no deseado. Se asume ese costo a cambio de
+que el sitio sea funcional.
 
 ---
 
