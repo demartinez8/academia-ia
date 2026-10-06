@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     PERSONALIZAR: título y descripción que se ven en Google y
+     al compartir el enlace.
+     ============================================================ -->
+<title>Academia IA — IA aplicada y automatización con Inteligencia Artificial</title>
+<meta name="description" content="Curso práctico de IA aplicada y automatización: pasa de una idea a un sitio web publicado en Internet usando Inteligencia Artificial y GitHub Pages, sin instalar programas.">
+<meta name="author" content="Julio Pastor Restrepo Zapata">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+<!-- Open Graph: previsualización al compartir en redes o WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Academia IA — IA aplicada y automatización con IA">
+<meta property="og:description" content="De la idea al sitio publicado: aprende a especificar, generar, validar y publicar tu propio sitio web con ayuda de IA y GitHub Pages.">
+<meta property="og:locale" content="es_CO">
+
+<!-- Favicon en línea (SVG). PERSONALIZAR: cambia las letras o el color. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Ctext x='32' y='43' font-family='Segoe UI,Arial,sans-serif' font-size='28' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EIA%3C/text%3E%3C/svg%3E">
+
+<style>
+/* ============================================================================
+   1. TOKENS DE DISEÑO
+   ----------------------------------------------------------------------------
+   PERSONALIZAR COLORES: cambia los valores de --brand y los grises aquí.
+   Todo el sitio se recolorea solo, porque nada usa colores "a mano".
+
+   El sitio tiene tres estados de tema:
+     data-theme="auto"  -> sigue la preferencia del sistema operativo
+     data-theme="light" -> claro forzado por el visitante
+     data-theme="dark"  -> oscuro forzado por el visitante
+   ========================================================================== */
+:root {
+  /* --- Marca --- */
+  --brand:        #2563eb;
+  --brand-strong: #1d4ed8;
+  --brand-soft:   #eff4ff;
+  --brand-ring:   rgba(37, 99, 235, .35);
+
+  /* --- Superficies y texto (tema claro) --- */
+  --bg:         #ffffff;
+  --bg-alt:     #f6f8fb;
+  --surface:    #ffffff;
+  --surface-2:  #f2f5f9;
+  --text:       #111827;
+  --text-soft:  #4b5563;
+  --text-faint: #6b7280;
+  --border:     #e3e8ef;
+  --border-str: #cbd5e1;
+  --shadow:     0 1px 2px rgba(16,24,40,.04), 0 8px 24px -12px rgba(16,24,40,.18);
+  --shadow-lg:  0 24px 60px -24px rgba(16,24,40,.35);
+  --overlay:    rgba(15, 23, 42, .55);
+
+  /* --- Tipografía --- */
+  --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --fs-h1: clamp(2.1rem, 1.3rem + 3.6vw, 3.9rem);
+  --fs-h2: clamp(1.55rem, 1.2rem + 1.5vw, 2.3rem);
+  --fs-h3: clamp(1.07rem, 1rem + .35vw, 1.22rem);
+  --fs-lead: clamp(1.02rem, .97rem + .4vw, 1.2rem);
+
+  /* --- Ritmo y formas --- */
+  --maxw: 1140px;
+  --gutter: clamp(1.1rem, .6rem + 2.2vw, 2.5rem);
+  --section-y: clamp(3.6rem, 2rem + 6vw, 6.5rem);
+  --r-sm: 8px;
+  --r:    14px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+  --t: 180ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Tema oscuro: aplicado cuando el visitante lo elige explícitamente... */
+:root[data-theme="dark"] {
+  --brand:        #60a5fa;
+  --brand-strong: #93c5fd;
+  --brand-soft:   #16233c;
+  --brand-ring:   rgba(96, 165, 250, .45);
+
+  --bg:         #0b1220;
+  --bg-alt:     #0f172a;
+  --surface:    #141d2f;
+  --surface-2:  #1b2639;
+  --text:       #f1f5f9;
+  --text-soft:  #c3ccda;
+  --text-faint: #9aa6b8;
+  --border:     #263147;
+  --border-str: #3a4761;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  --shadow-lg:  0 28px 70px -28px rgba(0,0,0,.85);
+  --overlay:    rgba(2, 6, 16, .72);
+}
+/* ...y también cuando está en "auto" y el sistema pide oscuro. */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --brand:        #60a5fa;
+    --brand-strong: #93c5fd;
+    --brand-soft:   #16233c;
+    --brand-ring:   rgba(96, 165, 250, .45);
+
+    --bg:         #0b1220;
+    --bg-alt:     #0f172a;
+    --surface:    #141d2f;
+    --surface-2:  #1b2639;
+    --text:       #f1f5f9;
+    --text-soft:  #c3ccda;
+    --text-faint: #9aa6b8;
+    --border:     #263147;
+    --border-str: #3a4761;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+    --shadow-lg:  0 28px 70px -28px rgba(0,0,0,.85);
+    --overlay:    rgba(2, 6, 16, .72);
+  }
+}
+
+/* ============================================================================
+   2. BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* Evita que el encabezado fijo tape los títulos al navegar por anclas. */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { line-height: 1.18; margin: 0 0 .6em; font-weight: 700; letter-spacing: -.02em; }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); letter-spacing: -.01em; }
+p  { margin: 0 0 1rem; color: var(--text-soft); }
+a  { color: var(--brand); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+img, svg { max-width: 100%; height: auto; display: block; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.2rem; color: var(--text-soft); }
+li { margin-bottom: .4rem; }
+code, kbd {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: .88em;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .1em .4em;
+}
+
+/* --- Foco visible: requisito de accesibilidad. No eliminar. --- */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* Respeta a quien pide menos movimiento en su sistema operativo. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* Utilidad: visible solo para lectores de pantalla. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Enlace para saltar al contenido (aparece al tabular). */
+.skip-link {
+  position: absolute; left: 50%; top: -100px;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: var(--brand); color: #fff;
+  padding: .7rem 1.2rem;
+  border-radius: 0 0 var(--r) var(--r);
+  font-weight: 600; text-decoration: none;
+  transition: top var(--t);
+}
+.skip-link:focus-visible { top: 0; outline-offset: -4px; }
+
+/* ============================================================================
+   3. LAYOUT
+   ========================================================================== */
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); }
+.section--alt { background: var(--bg-alt); border-block: 1px solid var(--border); }
+
+.section-head { max-width: 62ch; margin-bottom: clamp(2rem, 1rem + 3vw, 3.2rem); }
+.section-head.is-center { margin-inline: auto; text-align: center; }
+.section-head p { font-size: var(--fs-lead); margin-bottom: 0; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: .76rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: .85rem;
+}
+
+/* ============================================================================
+   4. BOTONES Y PÍLDORAS
+   ========================================================================== */
+.btn {
+  --_bg: var(--brand); --_fg: #fff; --_bd: var(--brand);
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  background: var(--_bg); color: var(--_fg);
+  border: 1px solid var(--_bd);
+  padding: .78rem 1.45rem;
+  border-radius: var(--r-pill);
+  font: inherit; font-weight: 600; line-height: 1.2;
+  text-decoration: none; cursor: pointer;
+  transition: transform var(--t), box-shadow var(--t), background var(--t), color var(--t), border-color var(--t);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px var(--brand-ring); }
+.btn:active { transform: translateY(0); }
+/* En tema oscuro la marca es clara, así que el texto del botón se oscurece.
+   Se excluye .btn--ghost, que siempre usa el color de texto normal. */
+:root[data-theme="dark"] .btn:not(.btn--ghost),
+:root[data-theme="auto"] .btn:not(.btn--ghost) { --_fg: #0b1220; }
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] .btn:not(.btn--ghost) { --_fg: #fff; }
+}
+
+.btn--ghost {
+  --_bg: transparent; --_fg: var(--text); --_bd: var(--border-str);
+}
+.btn--ghost:hover { --_bg: var(--surface-2); --_bd: var(--brand); box-shadow: none; }
+
+.btn--block { width: 100%; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--brand-soft); color: var(--brand-strong);
+  border: 1px solid var(--brand-ring);
+  border-radius: var(--r-pill);
+  padding: .3rem .8rem;
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* ============================================================================
+   5. ENCABEZADO Y NAVEGACIÓN
+   ========================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  /* Color plano primero, como respaldo si el navegador no soporta color-mix. */
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header__inner {
+  display: flex; align-items: center; gap: 1rem;
+  min-height: 4.4rem;
+}
+
+.brand {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-weight: 800; font-size: 1.08rem; letter-spacing: -.02em;
+  color: var(--text); text-decoration: none;
+  margin-right: auto;
+}
+.brand__mark {
+  display: grid; place-items: center;
+  width: 2.1rem; height: 2.1rem;
+  background: var(--brand); color: #fff;
+  border-radius: 9px;
+  font-size: .82rem; font-weight: 800; letter-spacing: .02em;
+}
+.brand__dot { color: var(--brand); }
+
+.nav { display: flex; align-items: center; gap: .15rem; }
+.nav a {
+  position: relative;
+  padding: .5rem .75rem;
+  border-radius: var(--r-sm);
+  color: var(--text-soft);
+  font-size: .93rem; font-weight: 600;
+  text-decoration: none;
+  transition: color var(--t), background var(--t);
+}
+.nav a:hover { color: var(--text); background: var(--surface-2); }
+/* Estado "sección en pantalla", lo marca JavaScript (scroll-spy). */
+.nav a[aria-current="true"] { color: var(--brand); }
+.nav a[aria-current="true"]::after {
+  content: ""; position: absolute; left: .75rem; right: .75rem; bottom: .18rem;
+  height: 2px; border-radius: 2px; background: var(--brand);
+}
+
+.header-actions { display: flex; align-items: center; gap: .5rem; }
+
+.icon-btn {
+  display: grid; place-items: center;
+  width: 2.5rem; height: 2.5rem;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background var(--t), border-color var(--t), color var(--t);
+}
+.icon-btn:hover { background: var(--surface-2); border-color: var(--border-str); }
+.icon-btn svg { width: 1.15rem; height: 1.15rem; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+/* El icono del tema: mostramos sol u luna según el tema efectivo. */
+.icon-moon { display: none; }
+:root[data-theme="dark"] .icon-sun,
+:root[data-theme="auto"] .icon-sun { display: none; }
+:root[data-theme="dark"] .icon-moon,
+:root[data-theme="auto"] .icon-moon { display: block; }
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] .icon-sun  { display: block; }
+  :root[data-theme="auto"] .icon-moon { display: none; }
+}
+:root[data-theme="light"] .icon-sun  { display: block; }
+:root[data-theme="light"] .icon-moon { display: none; }
+
+.nav-toggle { display: none; }
+
+/* --- Navegación en móvil --- */
+@media (max-width: 880px) {
+  .nav-toggle { display: grid; }
+  .nav {
+    position: fixed; inset: 4.4rem 0 auto 0;
+    flex-direction: column; align-items: stretch; gap: .2rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    padding: 1rem var(--gutter) 1.6rem;
+    max-height: calc(100dvh - 4.4rem);
+    overflow-y: auto;
+    /* Oculto por defecto; JavaScript cambia el atributo data-open. */
+    display: none;
+  }
+  .nav[data-open="true"] { display: flex; }
+  .nav a { padding: .8rem .9rem; font-size: 1rem; }
+  .nav a[aria-current="true"]::after { display: none; }
+  .nav a[aria-current="true"] { background: var(--brand-soft); }
+}
+
+/* ============================================================================
+   6. HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding-block: clamp(3.2rem, 1.5rem + 7vw, 7rem);
+  overflow: hidden;
+}
+/* Resplandor decorativo de fondo. aria-hidden en el HTML. */
+.hero__glow {
+  position: absolute; inset: -30% -10% auto -10%;
+  height: 70%;
+  background:
+    radial-gradient(42% 60% at 22% 30%, var(--brand-ring), transparent 70%),
+    radial-gradient(38% 55% at 78% 18%, var(--brand-ring), transparent 72%);
+  opacity: .5;
+  pointer-events: none;
+  filter: blur(14px);
+}
+.hero__inner { position: relative; display: grid; gap: clamp(2.4rem, 1rem + 5vw, 4rem); }
+@media (min-width: 980px) {
+  .hero__inner { grid-template-columns: 1.08fr .92fr; align-items: center; }
+}
+.hero h1 { margin-bottom: .55em; }
+.hero h1 em { font-style: normal; color: var(--brand); }
+.hero__lead { font-size: var(--fs-lead); max-width: 56ch; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.9rem; }
+.hero__note {
+  margin-top: 1.5rem; margin-bottom: 0;
+  font-size: .88rem; color: var(--text-faint);
+}
+
+/* Tarjeta lateral: la ruta de trabajo del curso. */
+.route-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.3rem, 1rem + 1.2vw, 2rem);
+}
+.route-card__title {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.route-card__title h2 { font-size: 1.02rem; margin: 0; }
+.route-flow { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.route-flow li {
+  display: flex; align-items: center; gap: .8rem;
+  margin: 0; padding: .6rem .8rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: .92rem; font-weight: 600; color: var(--text);
+}
+.route-flow b {
+  display: grid; place-items: center;
+  flex: 0 0 1.6rem; height: 1.6rem;
+  background: var(--brand); color: #fff;
+  border-radius: 7px;
+  font-size: .76rem;
+}
+
+/* ============================================================================
+   7. REJILLAS DE TARJETAS
+   ========================================================================== */
+.grid { display: grid; gap: clamp(1rem, .6rem + 1.1vw, 1.5rem); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: clamp(1.15rem, 1rem + .6vw, 1.6rem);
+  box-shadow: var(--shadow);
+  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+}
+.card h3 { margin-bottom: .45em; }
+.card p:last-child { margin-bottom: 0; }
+
+.card__icon {
+  display: grid; place-items: center;
+  width: 2.6rem; height: 2.6rem;
+  margin-bottom: 1rem;
+  background: var(--brand-soft); color: var(--brand-strong);
+  border: 1px solid var(--brand-ring);
+  border-radius: 10px;
+}
+.card__icon svg { width: 1.3rem; height: 1.3rem; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============================================================================
+   8. MÓDULOS: controles de filtro y búsqueda
+   ========================================================================== */
+.filters {
+  display: grid; gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+@media (min-width: 760px) {
+  .filters { grid-template-columns: 1fr auto; align-items: end; }
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+  background: var(--surface); color: var(--text-soft);
+  border: 1px solid var(--border-str);
+  border-radius: var(--r-pill);
+  padding: .45rem 1rem;
+  font: inherit; font-size: .88rem; font-weight: 600;
+  cursor: pointer;
+  transition: background var(--t), color var(--t), border-color var(--t);
+}
+.chip:hover { border-color: var(--brand); color: var(--text); }
+/* El estado activo lo marca JavaScript con aria-pressed="true". */
+.chip[aria-pressed="true"] {
+  background: var(--brand); color: #fff; border-color: var(--brand);
+}
+:root[data-theme="dark"] .chip[aria-pressed="true"] { color: #0b1220; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .chip[aria-pressed="true"] { color: #0b1220; }
+}
+
+.search { position: relative; min-width: min(100%, 19rem); }
+.search svg {
+  position: absolute; left: .85rem; top: 50%; transform: translateY(-50%);
+  width: 1.05rem; height: 1.05rem;
+  stroke: var(--text-faint); fill: none; stroke-width: 2; stroke-linecap: round;
+  pointer-events: none;
+}
+.search input {
+  width: 100%;
+  padding: .72rem .9rem .72rem 2.6rem;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border-str);
+  border-radius: var(--r-pill);
+  font: inherit; font-size: .93rem;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.search input::placeholder { color: var(--text-faint); }
+.search input:hover { border-color: var(--brand); }
+
+.results-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem;
+  margin-bottom: 1.4rem;
+  font-size: .9rem; color: var(--text-faint);
+}
+.results-bar strong { color: var(--text); }
+
+/* Tarjeta de módulo: es un botón, para que funcione con teclado. */
+.module {
+  display: flex; flex-direction: column; gap: .7rem;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.35rem;
+  box-shadow: var(--shadow);
+  font: inherit; color: var(--text);
+  cursor: pointer;
+  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+}
+.module:hover { transform: translateY(-3px); border-color: var(--brand); box-shadow: var(--shadow-lg); }
+.module__top { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+.module__num {
+  font-size: .78rem; font-weight: 800; letter-spacing: .12em;
+  color: var(--text-faint);
+}
+.module__tag {
+  background: var(--brand-soft); color: var(--brand-strong);
+  border: 1px solid var(--brand-ring);
+  border-radius: var(--r-pill);
+  padding: .18rem .65rem;
+  font-size: .72rem; font-weight: 700;
+  white-space: nowrap;
+}
+.module h3 { margin: 0; font-size: 1.07rem; }
+.module p { margin: 0; font-size: .92rem; }
+.module__more {
+  margin-top: auto;
+  display: inline-flex; align-items: center; gap: .4rem;
+  color: var(--brand); font-size: .86rem; font-weight: 700;
+}
+.module__more svg { width: .95rem; height: .95rem; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Mensaje cuando el filtro no encuentra nada. */
+.empty {
+  border: 1px dashed var(--border-str);
+  border-radius: var(--r);
+  padding: 2.8rem 1.5rem;
+  text-align: center;
+  background: var(--surface);
+}
+.empty h3 { margin-bottom: .4em; }
+.empty p { margin-bottom: 1.2rem; }
+[hidden] { display: none !important; }
+
+/* ============================================================================
+   9. MODAL DE DETALLE (elemento <dialog> nativo)
+   ========================================================================== */
+.modal {
+  width: min(42rem, calc(100vw - 2 * var(--gutter)));
+  max-height: min(84dvh, 46rem);
+  padding: 0;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.modal::backdrop { background: var(--overlay); backdrop-filter: blur(3px); }
+.modal__head {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal__head > div { flex: 1 1 auto; }
+.modal__head h2 { margin: .35rem 0 0; font-size: 1.32rem; }
+.modal__body { padding: 1.4rem 1.5rem 1.8rem; overflow-y: auto; max-height: 55dvh; }
+.modal__body h3 {
+  font-size: .78rem; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--brand);
+  margin: 1.6rem 0 .6rem;
+}
+.modal__body h3:first-child { margin-top: 0; }
+.modal__body ul { padding-left: 1.15rem; }
+.modal__foot {
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+/* ============================================================================
+   10. RUTA DE APRENDIZAJE (línea de tiempo)
+   ========================================================================== */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li {
+  position: relative;
+  margin: 0;
+  padding: 0 0 2.1rem 3.4rem;
+}
+.timeline li:last-child { padding-bottom: 0; }
+/* Línea vertical que conecta los pasos. */
+.timeline li::before {
+  content: "";
+  position: absolute; left: 1.17rem; top: 2.5rem; bottom: -.2rem;
+  width: 2px;
+  background: linear-gradient(var(--brand-ring), var(--border));
+}
+.timeline li:last-child::before { display: none; }
+.timeline__num {
+  position: absolute; left: 0; top: .1rem;
+  display: grid; place-items: center;
+  width: 2.4rem; height: 2.4rem;
+  background: var(--surface);
+  color: var(--brand);
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  font-size: .9rem; font-weight: 800;
+}
+.timeline h3 { margin-bottom: .3em; }
+.timeline p { margin-bottom: 0; }
+@media (min-width: 900px) {
+  .timeline { grid-template-columns: 1fr 1fr; column-gap: clamp(2rem, 4vw, 4rem); }
+}
+
+/* ============================================================================
+   11. ACORDEÓN FAQ
+   ========================================================================== */
+.faq { max-width: 56rem; margin-inline: auto; display: grid; gap: .7rem; }
+.faq__item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.faq__item:has([aria-expanded="true"]) { border-color: var(--brand); box-shadow: var(--shadow); }
+.faq__q {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  width: 100%;
+  padding: 1.05rem 1.25rem;
+  background: none; border: 0;
+  font: inherit; font-size: 1rem; font-weight: 650;
+  color: var(--text); text-align: left;
+  cursor: pointer;
+}
+.faq__q:hover { color: var(--brand); }
+.faq__q svg {
+  flex: 0 0 1.1rem; width: 1.1rem; height: 1.1rem;
+  stroke: var(--brand); fill: none; stroke-width: 2.2; stroke-linecap: round;
+  transition: transform var(--t);
+}
+.faq__q[aria-expanded="true"] svg { transform: rotate(45deg); }
+.faq__a { padding: 0 1.25rem 1.2rem; }
+.faq__a > :last-child { margin-bottom: 0; }
+
+/* ============================================================================
+   12. FORMULARIO
+   ========================================================================== */
+.form-layout { display: grid; gap: clamp(1.6rem, 1rem + 2.5vw, 3rem); align-items: start; }
+@media (min-width: 940px) { .form-layout { grid-template-columns: .85fr 1.15fr; } }
+
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.3rem, 1rem + 1.4vw, 2.1rem);
+}
+.field-grid { display: grid; gap: 1.05rem; }
+@media (min-width: 640px) { .field-grid--2 { grid-template-columns: 1fr 1fr; } }
+
+.field label, .fieldset legend {
+  display: block;
+  margin-bottom: .35rem;
+  font-size: .88rem; font-weight: 650; color: var(--text);
+}
+.field .req { color: var(--brand); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: .72rem .9rem;
+  background: var(--bg); color: var(--text);
+  border: 1px solid var(--border-str);
+  border-radius: 10px;
+  font: inherit; font-size: .95rem;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.field textarea { min-height: 7rem; resize: vertical; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--brand); }
+.field .hint { display: block; margin-top: .3rem; font-size: .8rem; color: var(--text-faint); }
+/* Mensaje de error: lo escribe y muestra JavaScript. */
+.field .error {
+  display: none;
+  margin-top: .32rem;
+  font-size: .82rem; font-weight: 600;
+  color: #b42318;
+}
+:root[data-theme="dark"] .field .error { color: #fda4a4; }
+@media (prefers-color-scheme: dark) { :root[data-theme="auto"] .field .error { color: #fda4a4; } }
+.field[data-invalid="true"] .error { display: block; }
+.field[data-invalid="true"] input,
+.field[data-invalid="true"] select,
+.field[data-invalid="true"] textarea { border-color: #b42318; }
+:root[data-theme="dark"] .field[data-invalid="true"] input,
+:root[data-theme="dark"] .field[data-invalid="true"] select,
+:root[data-theme="dark"] .field[data-invalid="true"] textarea { border-color: #fda4a4; }
+
+.fieldset { border: 0; padding: 0; margin: 0; }
+.check-row { display: flex; align-items: flex-start; gap: .6rem; margin-top: .9rem; }
+.check-row input { width: 1.1rem; height: 1.1rem; margin-top: .25rem; flex: 0 0 auto; accent-color: var(--brand); }
+.check-row label { margin: 0; font-weight: 500; font-size: .89rem; color: var(--text-soft); line-height: 1.5; }
+
+.form-foot { margin-top: 1.5rem; }
+.form-foot .legal { margin: .9rem 0 0; font-size: .8rem; color: var(--text-faint); }
+
+/* Caja de resumen: la rellena JavaScript tras validar. */
+.summary {
+  margin-top: 1.5rem;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-ring);
+  border-radius: var(--r);
+  padding: 1.2rem 1.3rem;
+}
+.summary h3 { font-size: 1rem; margin-bottom: .5em; }
+.summary dl { margin: 0; display: grid; gap: .5rem; }
+@media (min-width: 520px) { .summary dl { grid-template-columns: auto 1fr; column-gap: 1rem; } }
+.summary dt { font-size: .82rem; font-weight: 700; color: var(--text-soft); }
+.summary dd { margin: 0; font-size: .92rem; color: var(--text); overflow-wrap: anywhere; }
+.summary__disclaimer {
+  margin: 1rem 0 0; padding-top: .9rem;
+  border-top: 1px dashed var(--brand-ring);
+  font-size: .83rem; color: var(--text-soft);
+}
+
+/* Aviso de honestidad técnica: no hay backend. */
+.notice {
+  display: flex; gap: .8rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--r-sm);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.5rem;
+}
+.notice svg { flex: 0 0 1.15rem; width: 1.15rem; height: 1.15rem; margin-top: .22rem; stroke: var(--brand); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.notice p { margin: 0; font-size: .89rem; }
+
+/* ============================================================================
+   13. PIE DE PÁGINA
+   ========================================================================== */
+.site-footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding-block: clamp(2.6rem, 2rem + 2vw, 3.6rem) 1.8rem;
+}
+.footer-grid { display: grid; gap: 2rem; margin-bottom: 2.2rem; }
+@media (min-width: 760px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+.footer-grid h3 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-faint); margin-bottom: .9rem; }
+.footer-grid ul { list-style: none; padding: 0; margin: 0; }
+.footer-grid li { margin-bottom: .5rem; }
+.footer-grid a { color: var(--text-soft); text-decoration: none; font-size: .93rem; }
+.footer-grid a:hover { color: var(--brand); text-decoration: underline; }
+.footer-bottom {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: .85rem; color: var(--text-faint);
+}
+.footer-bottom p { margin: 0; font-size: inherit; color: inherit; }
+
+/* Botón "volver arriba": JavaScript le quita el atributo hidden al bajar. */
+.to-top {
+  position: fixed; right: clamp(1rem, 2vw, 2rem); bottom: clamp(1rem, 2vw, 2rem);
+  z-index: 90;
+  width: 2.9rem; height: 2.9rem;
+  box-shadow: var(--shadow-lg);
+}
+</style>
+</head>
+
+<!-- ============================================================================
+     IMPORTANTE (requisito de la práctica): el body lleva id="inicio".
+     El menú y el logotipo apuntan a #inicio.
+     ========================================================================== -->
+<body id="inicio">
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<!-- ===========================================================================
+     ENCABEZADO
+     PERSONALIZAR: el nombre del sitio y los enlaces del menú.
+     ========================================================================= -->
+<header class="site-header">
+  <div class="wrap site-header__inner">
+
+    <a class="brand" href="#inicio" aria-label="Academia IA, ir al inicio">
+      <span class="brand__mark" aria-hidden="true">IA</span>
+      <span>Academia&nbsp;IA<span class="brand__dot">.</span></span>
+    </a>
+
+    <nav id="nav-principal" class="nav" aria-label="Navegación principal">
+      <a href="#aprender">Qué aprenderás</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#ruta">Ruta</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#inscripcion">Inscripción</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Interruptor de tema claro / oscuro -->
+      <button id="theme-toggle" class="icon-btn" type="button"
+              aria-pressed="false" aria-label="Cambiar a tema oscuro">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"></path>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.3A8.6 8.6 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8z"></path>
+        </svg>
+      </button>
+
+      <!-- Botón del menú en móvil -->
+      <button id="nav-toggle" class="icon-btn nav-toggle" type="button"
+              aria-controls="nav-principal" aria-expanded="false" aria-label="Abrir el menú de navegación">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- =========================================================================
+       1) HERO
+       PERSONALIZAR: titular, párrafo y textos de los botones.
+       ======================================================================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+
+      <div>
+        <span class="eyebrow">Curso práctico · Modalidad en línea</span>
+        <h1 id="hero-title">De una idea a un sitio web <em>publicado en Internet</em>, con ayuda de IA</h1>
+        <p class="hero__lead">
+          <strong>IA aplicada y Automatización con IA</strong> es un curso de práctica guiada:
+          aprendes a especificar lo que necesitas, a que la IA lo convierta en código,
+          a validarlo con criterio y a publicarlo con GitHub Pages.
+          Sin instalar programas y sin usar la terminal.
+        </p>
+
+        <div class="hero__cta">
+          <!-- CTA principal: llevar al visitante al catálogo de módulos -->
+          <a class="btn" href="#modulos">
+            Ver los módulos
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"
+                 style="stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M5 12h13M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#inscripcion">Solicitar información</a>
+        </div>
+
+        <p class="hero__note">
+          Requisitos: un navegador web, una cuenta de GitHub y disposición para leer y probar el código que generas.
+        </p>
+      </div>
+
+      <!-- Tarjeta con la ruta de trabajo del curso -->
+      <aside class="route-card" aria-labelledby="route-card-title">
+        <div class="route-card__title">
+          <h2 id="route-card-title">Ruta de trabajo</h2>
+          <span class="pill">9 etapas</span>
+        </div>
+        <ol class="route-flow">
+          <li><b aria-hidden="true">1</b> Idea</li>
+          <li><b aria-hidden="true">2</b> Conversación con la IA</li>
+          <li><b aria-hidden="true">3</b> Especificación confirmada</li>
+          <li><b aria-hidden="true">4</b> <code>index.html</code></li>
+          <li><b aria-hidden="true">5</b> Repositorio en GitHub</li>
+          <li><b aria-hidden="true">6</b> GitHub Pages</li>
+          <li><b aria-hidden="true">7</b> URL pública</li>
+          <li><b aria-hidden="true">8</b> Mejora incremental</li>
+          <li><b aria-hidden="true">9</b> Prueba y validación</li>
+        </ol>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       2) QUÉ APRENDERÁS
+       PERSONALIZAR: cada tarjeta es un bloque <article class="card">.
+       ======================================================================= -->
+  <section id="aprender" class="section section--alt" aria-labelledby="aprender-title">
+    <div class="wrap">
+
+      <div class="section-head is-center">
+        <span class="eyebrow">Competencias</span>
+        <h2 id="aprender-title">Qué aprenderás</h2>
+        <p>
+          El curso no evalúa quién escribe más código. Evalúa que puedas pasar de una
+          necesidad a un prototipo publicado, pedir ayuda técnica con precisión,
+          validar lo generado y explicar tus decisiones.
+        </p>
+      </div>
+
+      <div class="grid grid--3">
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.7 10.7c-.5.4-.7.9-.7 1.5H9c0-.6-.2-1.1-.7-1.5A6 6 0 0 1 12 3z"></path></svg>
+          </div>
+          <h3>Especificar antes de programar</h3>
+          <p>
+            Convertir una idea difusa en una especificación clara: objetivo, público,
+            secciones, estilo, acción principal e interacción. Es el paso que decide
+            la calidad del resultado.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 9.5 4.5 13 8 16.5M16 9.5 19.5 13 16 16.5M13.8 6.5l-3.6 13"></path></svg>
+          </div>
+          <h3>Leer y entender el código</h3>
+          <p>
+            Reconocer qué hace el HTML, el CSS y el JavaScript dentro de un único archivo,
+            y saber exactamente qué bloque tocar para cambiar un color, un texto o
+            un comportamiento.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H9l2 2.5h8A2 2 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z"></path></svg>
+          </div>
+          <h3>Versionar y publicar</h3>
+          <p>
+            Crear un repositorio, subir tu <code>index.html</code> a la raíz, activar
+            GitHub Pages sobre <code>main + /(root)</code> y obtener una URL pública
+            que se redespliega sola en cada cambio.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5 4.5 7v5.5c0 4.3 3.1 7.3 7.5 8.5 4.4-1.2 7.5-4.2 7.5-8.5V7z"></path><path d="M9.3 12.2l2 2 3.4-3.6"></path></svg>
+          </div>
+          <h3>Validar con responsabilidad</h3>
+          <p>
+            El código generado por IA puede fallar. Aprendes a leer, probar, modificar
+            poco a poco y validar antes de publicar, y a no exponer nunca credenciales
+            ni datos privados.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="M20.5 20.5 15.7 15.7M11 8v3M11 13.6h.01"></path></svg>
+          </div>
+          <h3>Depurar con método</h3>
+          <p>
+            Describir un síntoma con precisión, formular hipótesis, comprobarlas,
+            aplicar la corrección mínima y diseñar una prueba que confirme que
+            el problema quedó resuelto.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17.5V21M7 9h6M7 12.5h4"></path></svg>
+          </div>
+          <h3>Accesibilidad y responsive</h3>
+          <p>
+            Que el sitio funcione con teclado, muestre el foco, tenga contraste
+            suficiente, use <code>alt</code> en las imágenes y se adapte a computador,
+            tableta y móvil.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3) MÓDULOS  ·  INTERACCIÓN PRINCIPAL EN JAVASCRIPT
+       Filtro por categoría (chips) + buscador en vivo + modal de detalle.
+
+       PERSONALIZAR LOS MÓDULOS: no edites este HTML. Los módulos se generan
+       desde el arreglo MODULOS que está en el <script>, al final del archivo.
+       ======================================================================= -->
+  <section id="modulos" class="section" aria-labelledby="modulos-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <span class="eyebrow">Contenidos</span>
+        <h2 id="modulos-title">Módulos del curso</h2>
+        <p>
+          Filtra por etapa o busca por palabra clave. Pulsa cualquier módulo para ver
+          su objetivo, sus contenidos y el resultado que se espera de ti.
+        </p>
+      </div>
+
+      <!-- Controles de la interacción -->
+      <div class="filters">
+        <div id="chips" class="chips" role="group" aria-label="Filtrar módulos por etapa">
+          <!-- Los botones de filtro los genera JavaScript -->
+        </div>
+
+        <div class="search">
+          <label class="sr-only" for="buscador">Buscar módulos por palabra clave</label>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.3-4.3"></path></svg>
+          <input id="buscador" type="search" placeholder="Buscar: prompts, GitHub, accesibilidad…"
+                 autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+
+      <!-- Contador de resultados. aria-live avisa a los lectores de pantalla. -->
+      <p class="results-bar" id="resultado-contador" role="status" aria-live="polite"></p>
+
+      <!-- Rejilla de módulos (la rellena JavaScript) -->
+      <div id="modulos-grid" class="grid grid--3"></div>
+
+      <!-- Estado vacío -->
+      <div id="modulos-vacio" class="empty" hidden>
+        <h3>Ningún módulo coincide con tu búsqueda</h3>
+        <p>Prueba con otra palabra o vuelve a ver el programa completo.</p>
+        <button id="limpiar-filtros" class="btn btn--ghost" type="button">Limpiar filtros</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4) RUTA DE APRENDIZAJE
+       PERSONALIZAR: cada paso es un <li> con su .timeline__num.
+       ======================================================================= -->
+  <section id="ruta" class="section section--alt" aria-labelledby="ruta-title">
+    <div class="wrap">
+
+      <div class="section-head is-center">
+        <span class="eyebrow">Paso a paso</span>
+        <h2 id="ruta-title">La ruta, de la idea a la URL pública</h2>
+        <p>Cada paso produce un entregable verificable. Nada se da por hecho: todo se prueba.</p>
+      </div>
+
+      <ol class="timeline">
+        <li>
+          <span class="timeline__num" aria-hidden="true">1</span>
+          <h3>Define la idea</h3>
+          <p>Eliges qué sitio quieres construir, con información real que puedas publicar o con un caso ficticio coherente.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">2</span>
+          <h3>Deja que la IA te entreviste</h3>
+          <p>En lugar de pedir «hazme una página», pides que te pregunte una por una sobre nombre, objetivo, público, secciones, estilo y acción principal.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">3</span>
+          <h3>Confirma la especificación</h3>
+          <p>La IA resume tu proyecto, tú corriges los errores y solo entonces autorizas la generación del código.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">4</span>
+          <h3>Genera un único <code>index.html</code></h3>
+          <p>HTML semántico, CSS en <code>&lt;style&gt;</code> y JavaScript en <code>&lt;script&gt;</code>, dentro del mismo archivo, sin frameworks ni backend.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">5</span>
+          <h3>Sube el archivo a GitHub</h3>
+          <p>Creas un repositorio público, añades <code>index.html</code> en la raíz y registras el cambio con un mensaje de commit claro.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">6</span>
+          <h3>Activa GitHub Pages</h3>
+          <p>En <em>Settings → Pages</em> seleccionas la rama <code>main</code> y la carpeta <code>/(root)</code>, y guardas.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">7</span>
+          <h3>Prueba tu URL pública</h3>
+          <p>Recorres el menú, los botones, el formulario, la interacción y la versión móvil. Si algo falla, documentas el síntoma antes de tocar nada.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">8</span>
+          <h3>Mejora una interacción</h3>
+          <p>Eliges una sola mejora, pides un cambio acotado, lo aplicas con un commit y esperas el nuevo despliegue.</p>
+        </li>
+        <li>
+          <span class="timeline__num" aria-hidden="true">9</span>
+          <h3>Explica tus decisiones</h3>
+          <p>Documentas la especificación, los prompts, la prueba realizada, un error encontrado y qué aprendiste del código.</p>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5) METODOLOGÍA
+       ======================================================================= -->
+  <section id="metodologia" class="section" aria-labelledby="metodologia-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2 id="metodologia-title">Metodología: Code, No-Code, Low-Code e IA</h2>
+        <p>
+          La IA reduce la barrera de entrada al <em>Code</em>: tú describes lo que necesitas
+          y la IA propone una implementación. Pero la decisión y la validación siguen siendo tuyas.
+        </p>
+      </div>
+
+      <div class="grid grid--4">
+
+        <article class="card">
+          <span class="pill">No-Code</span>
+          <h3 style="margin-top:1rem">Construir sin escribir código</h3>
+          <p>Herramientas que permiten armar un producto con poca o ninguna escritura manual de código.</p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Low-Code</span>
+          <h3 style="margin-top:1rem">Visual más pequeños ajustes</h3>
+          <p>Combina constructores visuales con pequeñas cantidades de código para resolver lo que la herramienta no cubre.</p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Code</span>
+          <h3 style="margin-top:1rem">Control total</h3>
+          <p>Trabajo directo con HTML, CSS y JavaScript. Máxima libertad y, también, máxima responsabilidad.</p>
+        </article>
+
+        <article class="card">
+          <span class="pill">Code + IA</span>
+          <h3 style="margin-top:1rem">La vía del curso</h3>
+          <p>Especificas con precisión, la IA redacta el código, tú lo lees, lo pruebas y lo corriges antes de publicar.</p>
+        </article>
+
+      </div>
+
+      <div class="notice" style="margin-top:2.2rem">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 2.6 19.4h18.8z"></path><path d="M12 9.5v4.2M12 16.6h.01"></path></svg>
+        <p>
+          <strong>Principio de responsabilidad del curso:</strong> el código generado por IA puede fallar.
+          No publiques a ciegas. Lee, prueba, modifica poco a poco y valida.
+          Nunca pegues contraseñas, tokens, claves de API ni datos privados en un repositorio público.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6) FAQ  ·  ACORDEÓN ACCESIBLE
+       PERSONALIZAR: duplica un .faq__item y cambia el texto. Los atributos
+       id / aria-controls / aria-labelledby deben ser únicos y coincidir.
+       ======================================================================= -->
+  <section id="faq" class="section section--alt" aria-labelledby="faq-title">
+    <div class="wrap">
+
+      <div class="section-head is-center">
+        <span class="eyebrow">Dudas frecuentes</span>
+        <h2 id="faq-title">Preguntas frecuentes</h2>
+        <p>Si tu duda no está aquí, puedes plantearla en el formulario de abajo.</p>
+      </div>
+
+      <div class="faq" id="faq-lista">
+
+        <div class="faq__item">
+          <h3 style="margin:0">
+            <button class="faq__q" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+              <span>¿Necesito instalar programas o usar la terminal?</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+            <p>
+              No. Todo el trabajo se hace desde el navegador: conversas con la IA, creas el archivo
+              directamente en GitHub con la opción <em>Add file → Create new file</em> y publicas con
+              GitHub Pages. No se requiere instalación, línea de comandos ni entorno local.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <h3 style="margin:0">
+            <button class="faq__q" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+              <span>¿Necesito saber programar antes de empezar?</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+            <p>
+              No es un requisito de entrada. Sí es un resultado de salida: al terminar debes poder
+              señalar dónde están las secciones de tu archivo, dónde se cambian colores y textos,
+              qué funciones de JavaScript existen y qué las activa.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <h3 style="margin:0">
+            <button class="faq__q" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+              <span>¿Qué debo entregar al final de la práctica?</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+            <ul>
+              <li>La URL pública de GitHub Pages.</li>
+              <li>El tema y el objetivo del sitio.</li>
+              <li>La especificación acordada con la IA y el prompt maestro utilizado.</li>
+              <li>La interacción que mejoraste y el prompt de modificación.</li>
+              <li>La prueba que realizaste y su resultado.</li>
+              <li>Un error encontrado o un riesgo prevenido.</li>
+              <li>Una explicación breve de qué aprendiste del código.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <h3 style="margin:0">
+            <button class="faq__q" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+              <span>¿El código que genera la IA siempre funciona?</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+            <p>
+              No. Puede fallar, omitir secciones o cerrar mal una etiqueta. Por eso el curso insiste
+              en cuatro pasos antes de publicar: <strong>leer, probar, modificar poco a poco y validar</strong>.
+              Un cambio pequeño con un commit propio es más fácil de revisar y de revertir que una
+              reescritura completa.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <h3 style="margin:0">
+            <button class="faq__q" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+              <span>Mi sitio publicado se ve en blanco. ¿Qué reviso primero?</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+            <p>Este es un caso real de la práctica. El orden de diagnóstico recomendado es:</p>
+            <ol>
+              <li>Que <code>index.html</code> exista <strong>en la raíz</strong> del repositorio.</li>
+              <li>Que el archivo tenga contenido y comience con <code>&lt;!DOCTYPE html&gt;</code>.</li>
+              <li>Que exista <code>&lt;body id="inicio"&gt;</code> y que cierre con <code>&lt;/body&gt;</code>.</li>
+              <li>Que el archivo termine con <code>&lt;/html&gt;</code>.</li>
+              <li>Que <em>Settings → Pages</em> apunte a <code>main</code> y <code>/(root)</code>.</li>
+              <li>Recargar la URL después del nuevo despliegue.</li>
+              <li>Si aún falla, copiar el mensaje de la consola del navegador y entregarlo a la IA.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <h3 style="margin:0">
+            <button class="faq__q" type="button" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+              <span>¿Puedo subir datos privados, contraseñas o claves de API?</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </h3>
+          <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+            <p>
+              Nunca. Un repositorio público es visible para cualquiera y el historial de versiones
+              conserva lo que subiste, incluso si luego lo borras. Usa información que puedas
+              publicar o construye un caso ficticio coherente.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7) INSCRIPCIÓN  ·  FORMULARIO CON VALIDACIÓN Y RESUMEN LOCAL
+       Este sitio NO tiene backend. El formulario valida en el navegador y
+       muestra un resumen; no afirma en ningún momento que se haya enviado algo.
+       ======================================================================= -->
+  <section id="inscripcion" class="section" aria-labelledby="inscripcion-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <span class="eyebrow">Siguiente paso</span>
+        <h2 id="inscripcion-title">Solicita información del curso</h2>
+        <p>Completa tus datos y revisa el resumen antes de contactarnos por el canal que prefieras.</p>
+      </div>
+
+      <div class="form-layout">
+
+        <div>
+          <div class="notice">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.2M12 7.9h.01"></path></svg>
+            <p>
+              <strong>Aviso técnico honesto.</strong> Este sitio es un único archivo
+              <code>index.html</code> publicado en GitHub Pages: <strong>no tiene servidor
+              ni base de datos</strong>. Al pulsar el botón, los datos se validan y se
+              muestran en pantalla <strong>únicamente en tu navegador</strong>.
+              No se envían, no se guardan y nadie los recibe.
+            </p>
+          </div>
+
+          <h3>Qué pasa después</h3>
+          <p>
+            Revisa el resumen que aparecerá bajo el formulario, verifica que los datos sean
+            correctos y escríbenos por el canal de contacto que figura en el pie de página.
+          </p>
+
+          <h3 style="margin-top:1.6rem">Antes de inscribirte, ten listo</h3>
+          <ul>
+            <li>Un navegador web actualizado.</li>
+            <li>Una cuenta de GitHub con el correo verificado.</li>
+            <li>Una idea de sitio, real o ficticia, que puedas publicar.</li>
+          </ul>
+        </div>
+
+        <!-- PERSONALIZAR: los campos del formulario -->
+        <div class="form-card">
+          <form id="form-inscripcion" novalidate>
+
+            <div class="field-grid">
+
+              <div class="field-grid field-grid--2" style="gap:1.05rem">
+                <div class="field" data-field>
+                  <label for="nombre">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+                  <input id="nombre" name="nombre" type="text" autocomplete="name"
+                         required minlength="3" aria-describedby="err-nombre">
+                  <span class="error" id="err-nombre" role="alert"></span>
+                </div>
+
+                <div class="field" data-field>
+                  <label for="correo">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+                  <input id="correo" name="correo" type="email" autocomplete="email"
+                         required aria-describedby="err-correo">
+                  <span class="error" id="err-correo" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="field" data-field>
+                <label for="perfil">Tu perfil actual <span class="req" aria-hidden="true">*</span></label>
+                <select id="perfil" name="perfil" required aria-describedby="err-perfil">
+                  <option value="">Selecciona una opción…</option>
+                  <option>Estudiante</option>
+                  <option>Docente</option>
+                  <option>Profesional de otra área</option>
+                  <option>Emprendedor o independiente</option>
+                  <option>Perfil técnico o de desarrollo</option>
+                </select>
+                <span class="error" id="err-perfil" role="alert"></span>
+              </div>
+
+              <div class="field" data-field>
+                <label for="interes">Etapa que más te interesa <span class="req" aria-hidden="true">*</span></label>
+                <select id="interes" name="interes" required aria-describedby="err-interes">
+                  <option value="">Selecciona una opción…</option>
+                  <option>Fundamentos</option>
+                  <option>Prompts</option>
+                  <option>Desarrollo</option>
+                  <option>Publicación</option>
+                  <option>Calidad</option>
+                </select>
+                <span class="error" id="err-interes" role="alert"></span>
+              </div>
+
+              <div class="field" data-field>
+                <label for="idea">Describe en una línea el sitio que quieres construir</label>
+                <textarea id="idea" name="idea" maxlength="400"
+                          placeholder="Ejemplo: un portafolio para mostrar mis proyectos de automatización."
+                          aria-describedby="hint-idea"></textarea>
+                <span class="hint" id="hint-idea">Opcional. Máximo 400 caracteres.</span>
+              </div>
+
+              <fieldset class="fieldset field" data-field>
+                <div class="check-row">
+                  <input id="acepto" name="acepto" type="checkbox" required aria-describedby="err-acepto">
+                  <label for="acepto">
+                    Entiendo que este sitio es un ejercicio académico sin servidor y que
+                    mis datos <strong>no se envían ni se almacenan</strong> en ningún lugar.
+                    <span class="req" aria-hidden="true">*</span>
+                  </label>
+                </div>
+                <span class="error" id="err-acepto" role="alert"></span>
+              </fieldset>
+
+            </div>
+
+            <div class="form-foot">
+              <button class="btn btn--block" type="submit">Validar y ver mi resumen</button>
+              <p class="legal">
+                Los campos marcados con <span class="req" aria-hidden="true">*</span>
+                <span class="sr-only">asterisco</span> son obligatorios.
+              </p>
+            </div>
+
+          </form>
+
+          <!-- Resumen local: lo rellena JavaScript tras una validación correcta. -->
+          <div id="resumen" class="summary" hidden role="status" aria-live="polite">
+            <h3>Resumen de lo que diligenciaste</h3>
+            <dl id="resumen-datos"></dl>
+            <p class="summary__disclaimer">
+              Este resumen se generó en tu navegador. <strong>No se envió ningún mensaje</strong>
+              y nadie ha recibido esta información, porque el sitio no tiene backend.
+              Para contactarnos de verdad, usa los datos del pie de página.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===========================================================================
+     PIE DE PÁGINA
+     PERSONALIZAR: datos de contacto y enlaces.
+     ========================================================================= -->
+<footer class="site-footer">
+  <div class="wrap">
+
+    <div class="footer-grid">
+
+      <div>
+        <a class="brand" href="#inicio" style="margin-bottom:.9rem">
+          <span class="brand__mark" aria-hidden="true">IA</span>
+          <span>Academia&nbsp;IA<span class="brand__dot">.</span></span>
+        </a>
+        <p style="max-width:34ch">
+          Curso <strong>IA aplicada y Automatización con IA</strong>.
+          Práctica guiada: de la idea al sitio publicado.
+        </p>
+        <p style="font-size:.88rem">
+          Autor del curso: <strong>Julio Pastor Restrepo Zapata</strong>
+        </p>
+      </div>
+
+      <nav aria-labelledby="footer-nav-title">
+        <h3 id="footer-nav-title">Navegación</h3>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#aprender">Qué aprenderás</a></li>
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#ruta">Ruta de aprendizaje</a></li>
+          <li><a href="#metodologia">Metodología</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h3>Contacto</h3>
+        <ul>
+          <!-- PERSONALIZAR: reemplaza por tu correo real antes de publicar. -->
+          <li><a href="mailto:contacto@example.com">contacto@example.com</a></li>
+          <li><a href="#inscripcion">Formulario de información</a></li>
+        </ul>
+        <h3 style="margin-top:1.4rem">Herramientas</h3>
+        <ul>
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="anio">2026</span> Academia IA · Proyecto académico del curso de IA aplicada.</p>
+      <p>Sitio de un solo archivo <code>index.html</code>, publicado con GitHub Pages.</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Botón flotante "volver arriba" -->
+<button id="to-top" class="icon-btn to-top" type="button" aria-label="Volver al inicio de la página" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+</button>
+
+<!-- ===========================================================================
+     MODAL DE DETALLE DE MÓDULO
+     Usa el elemento nativo <dialog>, que ya trae cierre con Escape,
+     fondo bloqueado y devolución del foco al botón que lo abrió.
+     ========================================================================= -->
+<dialog id="modal" class="modal" aria-labelledby="modal-titulo">
+  <div class="modal__head">
+    <div>
+      <span class="module__tag" id="modal-etiqueta"></span>
+      <h2 id="modal-titulo"></h2>
+    </div>
+    <button id="modal-cerrar" class="icon-btn" type="button" aria-label="Cerrar el detalle del módulo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+  </div>
+  <div class="modal__body" id="modal-cuerpo"></div>
+  <div class="modal__foot">
+    <a class="btn btn--block" href="#inscripcion" data-cierra-modal>Solicitar información del curso</a>
+  </div>
+</dialog>
+
+<script>
+/* ============================================================================
+   JAVASCRIPT
+   ----------------------------------------------------------------------------
+   Todo va envuelto en una función que se ejecuta sola (IIFE) y en modo
+   estricto, para no dejar variables sueltas en el ámbito global.
+
+   Contenido:
+     A. Datos de los módulos  <-- PERSONALIZAR AQUÍ el contenido del curso
+     B. Tema claro / oscuro
+     C. Menú en móvil
+     D. Scroll-spy del menú
+     E. Botón volver arriba
+     F. Módulos: filtro + buscador + modal   (interacción principal)
+     G. Acordeón FAQ
+     H. Formulario: validación + resumen local
+     I. Año del pie de página
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  /* --- Atajos cortos para no repetir document.querySelector --- */
+  var $  = function (sel, ctx) { return (ctx || document).querySelector(sel); };
+  var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
+
+  /* ==========================================================================
+     A. DATOS DE LOS MÓDULOS
+     --------------------------------------------------------------------------
+     PERSONALIZAR EL CURSO: edita, añade o quita objetos de este arreglo.
+     Las tarjetas, los filtros, el buscador y el modal se actualizan solos.
+
+     Campos de cada módulo:
+       num       : número visible en la tarjeta.
+       titulo    : nombre del módulo.
+       etapa     : categoría; genera automáticamente el botón de filtro.
+       resumen   : texto corto de la tarjeta.
+       objetivo  : primer bloque del modal.
+       contenidos: lista de temas (arreglo de textos).
+       resultado : qué se espera que el estudiante produzca.
+     ======================================================================== */
+  var MODULOS = [
+    {
+      num: "01",
+      titulo: "Code, No-Code, Low-Code e IA",
+      etapa: "Fundamentos",
+      resumen: "Dónde se ubica cada enfoque, qué resuelve cada uno y por qué la IA baja la barrera de entrada al código.",
+      objetivo: "Situar el trabajo del curso en el mapa de enfoques de construcción de software y entender qué aporta la IA.",
+      contenidos: [
+        "No-Code: construir con poca o ninguna escritura manual de código.",
+        "Low-Code: herramientas visuales combinadas con pequeñas cantidades de código.",
+        "Code: trabajo directo con HTML, CSS y JavaScript.",
+        "El papel de la IA: tú describes la necesidad, la IA propone una implementación."
+      ],
+      resultado: "Puedes explicar con tus palabras qué enfoque usarás y por qué."
+    },
+    {
+      num: "02",
+      titulo: "Responsabilidad y seguridad desde el día uno",
+      etapa: "Fundamentos",
+      resumen: "El código de IA puede fallar. Aquí se fija el principio: leer, probar, modificar poco a poco y validar.",
+      objetivo: "Adoptar un criterio de validación antes de publicar y evitar la exposición de información sensible.",
+      contenidos: [
+        "Los cuatro pasos antes de publicar: leer, probar, modificar poco a poco, validar.",
+        "Por qué no se publica a ciegas.",
+        "Qué nunca va en un repositorio público: contraseñas, tokens, claves de API, datos privados.",
+        "El historial de versiones conserva lo que subiste, aunque después lo borres."
+      ],
+      resultado: "Tienes una lista propia de comprobaciones mínimas antes de cada publicación."
+    },
+    {
+      num: "03",
+      titulo: "La entrevista: deja que la IA te pregunte",
+      etapa: "Prompts",
+      resumen: "En lugar de pedir «hazme una página», pides que te entreviste una por una hasta tener una especificación.",
+      objetivo: "Convertir una idea difusa en una especificación confirmada antes de generar una sola línea de código.",
+      contenidos: [
+        "Por qué el primer prompt no debe pedir código.",
+        "Las nueve preguntas: tema, nombre, objetivo, público, secciones, contenidos, estilo, acción principal e interacción.",
+        "Pedir el resumen final y corregirlo antes de confirmar.",
+        "Decidir entre información real publicable o un caso ficticio coherente."
+      ],
+      resultado: "Una especificación escrita, revisada y confirmada por ti."
+    },
+    {
+      num: "04",
+      titulo: "El prompt maestro",
+      etapa: "Prompts",
+      resumen: "Cómo se redacta el prompt que fija rol, requisitos de generación, restricciones y formato exacto de salida.",
+      objetivo: "Escribir instrucciones tan precisas que el resultado sea verificable punto por punto.",
+      contenidos: [
+        "Asignación de rol: arquitectura, front-end, UX/UI, accesibilidad, QA y seguridad.",
+        "Requisitos de generación: un único archivo, HTML semántico, CSS y JS embebidos, responsive.",
+        "Restricciones explícitas: sin frameworks, sin backend, sin instalación, sin inventar datos.",
+        "Formato de salida: el código completo, desde la declaración del documento hasta su cierre."
+      ],
+      resultado: "Un prompt maestro propio, reutilizable y adaptado a tu proyecto."
+    },
+    {
+      num: "05",
+      titulo: "Anatomía de un index.html",
+      etapa: "Desarrollo",
+      resumen: "Qué hace el HTML, qué controla el CSS y qué resuelve el JavaScript, todo dentro del mismo archivo.",
+      objetivo: "Poder señalar, en tu propio archivo, exactamente dónde se cambia cada cosa.",
+      contenidos: [
+        "HTML: la estructura y el contenido.",
+        "CSS: colores, tipografía, distribución y comportamiento responsive.",
+        "JavaScript: botones, filtros, acordeones, validaciones e interacciones.",
+        "Por qué el requisito del curso incluye un elemento de cuerpo con identificador de inicio."
+      ],
+      resultado: "Un mapa anotado de tu archivo: dónde están las secciones y qué bloque tocar para cada cambio."
+    },
+    {
+      num: "06",
+      titulo: "Accesibilidad y diseño responsive",
+      etapa: "Desarrollo",
+      resumen: "Navegación por teclado, foco visible, contraste suficiente, atributos ARIA cuando aplican y texto alternativo.",
+      objetivo: "Entregar un sitio usable en computador, tableta y móvil, y operable sin ratón.",
+      contenidos: [
+        "Recorrido completo con el tabulador y foco siempre visible.",
+        "Contraste de color suficiente entre texto y fondo.",
+        "Uso de atributos ARIA solo cuando el HTML nativo no alcanza.",
+        "Texto alternativo en imágenes y etiquetas asociadas a cada campo de formulario.",
+        "Puntos de quiebre y rejillas flexibles."
+      ],
+      resultado: "Tu sitio se recorre con teclado y se adapta a pantallas pequeñas sin desbordes."
+    },
+    {
+      num: "07",
+      titulo: "Repositorio y control de versiones en GitHub",
+      etapa: "Publicación",
+      resumen: "Crear el repositorio público, añadir el archivo en la raíz y registrar cada cambio con un mensaje claro.",
+      objetivo: "Tener el proyecto versionado, con historial legible y un único punto de verdad.",
+      contenidos: [
+        "Crear un repositorio público con nombre corto y con guiones, sin espacios.",
+        "Añadir el archivo desde el navegador con Add file y Create new file.",
+        "Nombrarlo exactamente index.html y ubicarlo en la raíz del repositorio.",
+        "Escribir mensajes de commit que describan el cambio.",
+        "Comprobación crítica: el sitio va en index.html, no solamente en el archivo de descripción."
+      ],
+      resultado: "Un repositorio público con tu index.html en la raíz y un historial de cambios."
+    },
+    {
+      num: "08",
+      titulo: "Publicación con GitHub Pages",
+      etapa: "Publicación",
+      resumen: "Activar el despliegue desde la rama principal y la carpeta raíz, y obtener la URL pública del sitio.",
+      objetivo: "Convertir tu archivo en un sitio accesible por Internet, con redespliegue automático.",
+      contenidos: [
+        "Settings y Pages: desplegar desde una rama.",
+        "Seleccionar la rama main y la carpeta raíz.",
+        "El patrón de la dirección pública resultante.",
+        "Cada commit nuevo en la rama principal vuelve a desplegar el sitio."
+      ],
+      resultado: "Una URL pública funcionando, que se actualiza sola al confirmar cambios."
+    },
+    {
+      num: "09",
+      titulo: "Depuración asistida por IA",
+      etapa: "Calidad",
+      resumen: "Describir el síntoma con precisión, pedir hipótesis, aplicar la corrección mínima y diseñar la prueba.",
+      objetivo: "Resolver fallos sin reescribir el sitio completo y sin perder el control del código.",
+      contenidos: [
+        "El orden de diagnóstico cuando la página aparece en blanco.",
+        "Estructura de un buen reporte: síntoma, resultado esperado, último cambio, error de consola y fragmento relacionado.",
+        "Pedir hipótesis y cómo comprobarlas, no una reescritura.",
+        "Exigir siempre una prueba que verifique la corrección."
+      ],
+      resultado: "Un fallo real documentado, con su hipótesis, su corrección mínima y su prueba."
+    },
+    {
+      num: "10",
+      titulo: "Mejora incremental de una interacción",
+      etapa: "Calidad",
+      resumen: "Elegir una sola mejora, pedir un cambio acotado, aplicarlo con un commit propio y volver a probar.",
+      objetivo: "Practicar el cambio pequeño y reversible frente a la reescritura total.",
+      contenidos: [
+        "Elegir una mejora: filtro, preguntas frecuentes, modal, contador, resumen de formulario, galería o buscador.",
+        "Redactar la petición: qué hace ahora, qué debe hacer, y no cambiar el resto.",
+        "Pedir qué bloque localizar, qué reemplazar, por qué funciona y cómo probarlo.",
+        "Editar el archivo en GitHub, confirmar y esperar el nuevo despliegue."
+      ],
+      resultado: "Una interacción mejorada, un commit que la contiene y una prueba que la respalda."
+    },
+    {
+      num: "11",
+      titulo: "Validación final y explicación de decisiones",
+      etapa: "Calidad",
+      resumen: "Recorrer la lista de verificación, probar en móvil y poder explicar qué cambiaste y por qué.",
+      objetivo: "Cerrar la práctica con un entregable completo y defendible.",
+      contenidos: [
+        "Lista de verificación: nombre y ubicación del archivo, estructura del documento y configuración de Pages.",
+        "Pruebas obligatorias: menú, botones, interacción y tamaño móvil.",
+        "Confirmar que no se publicaron credenciales ni datos privados.",
+        "Redactar la entrega: especificación, prompts, prueba, error prevenido y aprendizaje."
+      ],
+      resultado: "La entrega completa, con la URL pública y la documentación de tus decisiones."
+    }
+  ];
+
+  /* ==========================================================================
+     B. TEMA CLARO / OSCURO
+     --------------------------------------------------------------------------
+     Guarda la preferencia en el navegador. Si no hay preferencia guardada,
+     el sitio sigue la configuración del sistema operativo (estado "auto").
+     Todo acceso al almacenamiento va en try/catch, porque puede estar
+     bloqueado en modo privado.
+     ======================================================================== */
+  (function tema() {
+    var CLAVE = "academia-ia-tema";
+    var raiz = document.documentElement;
+    var boton = $("#theme-toggle");
+    if (!boton) { return; }
+
+    function leerGuardado() {
+      try { return localStorage.getItem(CLAVE); } catch (e) { return null; }
+    }
+    function guardar(valor) {
+      try { localStorage.setItem(CLAVE, valor); } catch (e) { /* sin almacenamiento: no pasa nada */ }
+    }
+    function esOscuroAhora() {
+      var modo = raiz.getAttribute("data-theme");
+      if (modo === "dark") { return true; }
+      if (modo === "light") { return false; }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    function sincronizarBoton() {
+      var oscuro = esOscuroAhora();
+      boton.setAttribute("aria-pressed", String(oscuro));
+      boton.setAttribute("aria-label", oscuro ? "Cambiar a tema claro" : "Cambiar a tema oscuro");
+    }
+
+    var guardado = leerGuardado();
+    if (guardado === "dark" || guardado === "light") {
+      raiz.setAttribute("data-theme", guardado);
+    }
+    sincronizarBoton();
+
+    boton.addEventListener("click", function () {
+      var siguiente = esOscuroAhora() ? "light" : "dark";
+      raiz.setAttribute("data-theme", siguiente);
+      guardar(siguiente);
+      sincronizarBoton();
+    });
+
+    // Si el visitante nunca eligió, seguimos los cambios del sistema.
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+      if (raiz.getAttribute("data-theme") === "auto") { sincronizarBoton(); }
+    });
+  })();
+
+  /* ==========================================================================
+     C. MENÚ EN MÓVIL
+     ======================================================================== */
+  (function menuMovil() {
+    var boton = $("#nav-toggle");
+    var nav = $("#nav-principal");
+    if (!boton || !nav) { return; }
+
+    function abrir(estado) {
+      nav.setAttribute("data-open", String(estado));
+      boton.setAttribute("aria-expanded", String(estado));
+      boton.setAttribute("aria-label", estado ? "Cerrar el menú de navegación" : "Abrir el menú de navegación");
+    }
+
+    boton.addEventListener("click", function () {
+      abrir(boton.getAttribute("aria-expanded") !== "true");
+    });
+
+    // Al elegir un enlace, el menú se cierra.
+    nav.addEventListener("click", function (ev) {
+      if (ev.target.closest("a")) { abrir(false); }
+    });
+
+    // Escape cierra el menú y devuelve el foco al botón.
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && boton.getAttribute("aria-expanded") === "true") {
+        abrir(false);
+        boton.focus();
+      }
+    });
+
+    // Si la ventana se agranda, el menú deja de estar desplegado.
+    window.matchMedia("(min-width: 881px)").addEventListener("change", function (ev) {
+      if (ev.matches) { abrir(false); }
+    });
+  })();
+
+  /* ==========================================================================
+     D. SCROLL-SPY: resalta en el menú la sección que está en pantalla
+     ======================================================================== */
+  (function scrollSpy() {
+    var enlaces = $$('#nav-principal a[href^="#"]');
+    if (!enlaces.length || !("IntersectionObserver" in window)) { return; }
+
+    var mapa = {};
+    var secciones = [];
+    enlaces.forEach(function (a) {
+      var seccion = document.getElementById(a.getAttribute("href").slice(1));
+      if (seccion) { mapa[seccion.id] = a; secciones.push(seccion); }
+    });
+
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) { return; }
+        enlaces.forEach(function (a) { a.removeAttribute("aria-current"); });
+        var activo = mapa[entrada.target.id];
+        if (activo) { activo.setAttribute("aria-current", "true"); }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+    secciones.forEach(function (s) { observador.observe(s); });
+  })();
+
+  /* ==========================================================================
+     E. BOTÓN VOLVER ARRIBA
+     ======================================================================== */
+  (function volverArriba() {
+    var boton = $("#to-top");
+    if (!boton) { return; }
+
+    function revisar() { boton.hidden = window.scrollY < 600; }
+    revisar();
+    window.addEventListener("scroll", revisar, { passive: true });
+
+    boton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      var marca = $("#inicio");
+      if (marca) { marca.focus && marca.focus({ preventScroll: true }); }
+    });
+  })();
+
+  /* ==========================================================================
+     F. MÓDULOS: FILTRO + BUSCADOR + MODAL   <-- INTERACCIÓN PRINCIPAL
+     --------------------------------------------------------------------------
+     Cómo funciona:
+       1. Se construyen los botones de filtro a partir de las etapas presentes
+          en el arreglo MODULOS, sin repetir.
+       2. Cada tarjeta es un <button>, de modo que funciona con ratón y teclado.
+       3. aplicarFiltros() decide qué tarjetas se muestran según la etapa activa
+          y el texto buscado, y actualiza el contador y el estado vacío.
+       4. Al pulsar una tarjeta se abre un <dialog> con el detalle del módulo.
+
+     QUÉ TOCAR PARA MODIFICAR ESTA INTERACCIÓN:
+       - Para cambiar el contenido: el arreglo MODULOS (bloque A).
+       - Para cambiar qué campos se buscan: la función textoBuscable().
+       - Para cambiar la apariencia de la tarjeta: tarjetaDe() y la clase
+         .module del CSS.
+       - Para cambiar el detalle del modal: abrirModal().
+     ======================================================================== */
+  (function catalogoModulos() {
+    var grid     = $("#modulos-grid");
+    var vacio    = $("#modulos-vacio");
+    var contador = $("#resultado-contador");
+    var chips    = $("#chips");
+    var buscador = $("#buscador");
+    var limpiar  = $("#limpiar-filtros");
+    var modal    = $("#modal");
+    if (!grid || !chips || !buscador || !modal) { return; }
+
+    var TODAS = "Todas";
+    var etapaActiva = TODAS;
+    var consulta = "";
+    var ultimoDisparador = null;   // botón que abrió el modal, para devolver el foco
+
+    /* --- Normaliza texto: minúsculas y sin acentos, para que "publicacion"
+           encuentre "publicación". --- */
+    function normalizar(txt) {
+      return String(txt)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "");
+    }
+
+    /* --- Texto sobre el que busca el buscador --- */
+    function textoBuscable(m) {
+      return normalizar([m.num, m.titulo, m.etapa, m.resumen, m.objetivo, m.contenidos.join(" ")].join(" "));
+    }
+
+    /* --- Construye los botones de filtro --- */
+    function construirChips() {
+      var etapas = [TODAS];
+      MODULOS.forEach(function (m) {
+        if (etapas.indexOf(m.etapa) === -1) { etapas.push(m.etapa); }
+      });
+
+      etapas.forEach(function (etapa) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "chip";
+        b.textContent = etapa;
+        b.setAttribute("data-etapa", etapa);
+        b.setAttribute("aria-pressed", String(etapa === etapaActiva));
+        chips.appendChild(b);
+      });
+
+      chips.addEventListener("click", function (ev) {
+        var b = ev.target.closest(".chip");
+        if (!b) { return; }
+        etapaActiva = b.getAttribute("data-etapa");
+        $$(".chip", chips).forEach(function (c) {
+          c.setAttribute("aria-pressed", String(c === b));
+        });
+        aplicarFiltros();
+      });
+    }
+
+    /* --- Crea la tarjeta de un módulo --- */
+    function tarjetaDe(m, indice) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "module";
+      b.setAttribute("data-indice", String(indice));
+      b.setAttribute("aria-haspopup", "dialog");
+      b.innerHTML =
+        '<div class="module__top">' +
+          '<span class="module__num">MÓDULO ' + m.num + '</span>' +
+          '<span class="module__tag">' + m.etapa + '</span>' +
+        '</div>' +
+        '<h3>' + m.titulo + '</h3>' +
+        '<p>' + m.resumen + '</p>' +
+        '<span class="module__more">Ver detalle' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>' +
+        '</span>';
+      return b;
+    }
+
+    /* --- Decide qué se muestra --- */
+    function aplicarFiltros() {
+      var q = normalizar(consulta.trim());
+
+      var visibles = MODULOS.filter(function (m) {
+        var coincideEtapa = (etapaActiva === TODAS) || (m.etapa === etapaActiva);
+        var coincideTexto = (q === "") || textoBuscable(m).indexOf(q) !== -1;
+        return coincideEtapa && coincideTexto;
+      });
+
+      grid.innerHTML = "";
+      visibles.forEach(function (m) {
+        grid.appendChild(tarjetaDe(m, MODULOS.indexOf(m)));
+      });
+
+      var hay = visibles.length > 0;
+      grid.hidden = !hay;
+      vacio.hidden = hay;
+
+      // Mensaje del contador, con singular y plural correctos.
+      var partes = ["Mostrando <strong>" + visibles.length + "</strong> de <strong>" + MODULOS.length + "</strong> " +
+                    (MODULOS.length === 1 ? "módulo" : "módulos")];
+      if (etapaActiva !== TODAS) { partes.push("etapa: <strong>" + etapaActiva + "</strong>"); }
+      if (q !== "") { partes.push('búsqueda: <strong>"' + consulta.trim() + '"</strong>'); }
+      contador.innerHTML = partes.join(" · ");
+    }
+
+    /* --- Abre el modal con el detalle --- */
+    function abrirModal(indice, disparador) {
+      var m = MODULOS[indice];
+      if (!m) { return; }
+
+      ultimoDisparador = disparador || null;
+
+      $("#modal-etiqueta").textContent = "Módulo " + m.num + " · " + m.etapa;
+      $("#modal-titulo").textContent = m.titulo;
+
+      var html =
+        "<h3>Objetivo</h3><p>" + m.objetivo + "</p>" +
+        "<h3>Contenidos</h3><ul>" +
+          m.contenidos.map(function (c) { return "<li>" + c + "</li>"; }).join("") +
+        "</ul>" +
+        "<h3>Resultado esperado</h3><p>" + m.resultado + "</p>";
+      $("#modal-cuerpo").innerHTML = html;
+
+      if (typeof modal.showModal === "function") {
+        modal.showModal();
+      } else {
+        modal.setAttribute("open", "");   // respaldo para navegadores antiguos
+      }
+      $("#modal-cuerpo").scrollTop = 0;
+      $("#modal-cerrar").focus();
+    }
+
+    function cerrarModal() {
+      if (typeof modal.close === "function") { modal.close(); }
+      else { modal.removeAttribute("open"); }
+    }
+
+    /* --- Conexión de eventos --- */
+    grid.addEventListener("click", function (ev) {
+      var tarjeta = ev.target.closest(".module");
+      if (tarjeta) { abrirModal(Number(tarjeta.getAttribute("data-indice")), tarjeta); }
+    });
+
+    $("#modal-cerrar").addEventListener("click", cerrarModal);
+
+    // Clic sobre el fondo oscuro: cierra.
+    modal.addEventListener("click", function (ev) {
+      if (ev.target === modal) { cerrarModal(); }
+    });
+
+    // El enlace del pie del modal cierra antes de saltar a la sección.
+    $$("[data-cierra-modal]", modal).forEach(function (el) {
+      el.addEventListener("click", cerrarModal);
+    });
+
+    // Al cerrar (incluso con Escape), el foco vuelve a la tarjeta de origen.
+    modal.addEventListener("close", function () {
+      if (ultimoDisparador && document.body.contains(ultimoDisparador)) {
+        ultimoDisparador.focus();
+      }
+      ultimoDisparador = null;
+    });
+
+    // Buscador: filtra mientras se escribe, con una pequeña espera para no
+    // recalcular en cada tecla.
+    var temporizador = null;
+    buscador.addEventListener("input", function () {
+      consulta = buscador.value;
+      clearTimeout(temporizador);
+      temporizador = setTimeout(aplicarFiltros, 120);
+    });
+
+    if (limpiar) {
+      limpiar.addEventListener("click", function () {
+        etapaActiva = TODAS;
+        consulta = "";
+        buscador.value = "";
+        $$(".chip", chips).forEach(function (c) {
+          c.setAttribute("aria-pressed", String(c.getAttribute("data-etapa") === TODAS));
+        });
+        aplicarFiltros();
+        buscador.focus();
+      });
+    }
+
+    construirChips();
+    aplicarFiltros();
+  })();
+
+  /* ==========================================================================
+     G. ACORDEÓN FAQ
+     --------------------------------------------------------------------------
+     Una sola respuesta abierta a la vez. Usa aria-expanded en el botón y el
+     atributo hidden en el panel, así funciona también con lector de pantalla.
+     ======================================================================== */
+  (function acordeon() {
+    var botones = $$(".faq__q");
+    if (!botones.length) { return; }
+
+    botones.forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        var abierto = boton.getAttribute("aria-expanded") === "true";
+
+        // Cierra todas (comportamiento de acordeón).
+        botones.forEach(function (otro) {
+          otro.setAttribute("aria-expanded", "false");
+          var panel = document.getElementById(otro.getAttribute("aria-controls"));
+          if (panel) { panel.hidden = true; }
+        });
+
+        // Si estaba cerrado, lo abre.
+        if (!abierto) {
+          boton.setAttribute("aria-expanded", "true");
+          var propio = document.getElementById(boton.getAttribute("aria-controls"));
+          if (propio) { propio.hidden = false; }
+        }
+      });
+    });
+
+    // Flechas arriba/abajo para moverse entre preguntas.
+    var lista = $("#faq-lista");
+    if (lista) {
+      lista.addEventListener("keydown", function (ev) {
+        if (ev.key !== "ArrowDown" && ev.key !== "ArrowUp") { return; }
+        var actual = botones.indexOf(document.activeElement);
+        if (actual === -1) { return; }
+        ev.preventDefault();
+        var paso = ev.key === "ArrowDown" ? 1 : -1;
+        botones[(actual + paso + botones.length) % botones.length].focus();
+      });
+    }
+  })();
+
+  /* ==========================================================================
+     H. FORMULARIO: VALIDACIÓN EN VIVO + RESUMEN LOCAL
+     --------------------------------------------------------------------------
+     IMPORTANTE: este sitio no tiene backend. El formulario NO envía nada.
+     Valida en el navegador y muestra un resumen, diciéndolo con claridad.
+
+     QUÉ TOCAR: el objeto REGLAS define los mensajes y la comprobación de
+     cada campo. Para añadir un campo, añade su regla y su HTML.
+     ======================================================================== */
+  (function formulario() {
+    var form = $("#form-inscripcion");
+    if (!form) { return; }
+
+    var cajaResumen = $("#resumen");
+    var listaResumen = $("#resumen-datos");
+
+    // Comprobación de correo: algo + @ + algo + . + al menos dos letras.
+    var RE_CORREO = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+
+    var REGLAS = {
+      nombre: {
+        etiqueta: "Nombre completo",
+        valida: function (v) {
+          if (!v.trim()) { return "Escribe tu nombre completo."; }
+          if (v.trim().length < 3) { return "El nombre debe tener al menos 3 caracteres."; }
+          return "";
+        }
+      },
+      correo: {
+        etiqueta: "Correo electrónico",
+        valida: function (v) {
+          if (!v.trim()) { return "Escribe tu correo electrónico."; }
+          if (!RE_CORREO.test(v.trim())) { return "Ese correo no tiene un formato válido. Ejemplo: nombre@dominio.com"; }
+          return "";
+        }
+      },
+      perfil: {
+        etiqueta: "Perfil actual",
+        valida: function (v) { return v ? "" : "Selecciona tu perfil actual."; }
+      },
+      interes: {
+        etiqueta: "Etapa de interés",
+        valida: function (v) { return v ? "" : "Selecciona la etapa que más te interesa."; }
+      },
+      idea: {
+        etiqueta: "Idea de sitio",
+        valida: function () { return ""; }   // campo opcional
+      },
+      acepto: {
+        etiqueta: "Confirmación",
+        valida: function (v, campo) {
+          return campo.checked ? "" : "Debes confirmar que entiendes que los datos no se envían.";
+        }
+      }
+    };
+
+    function contenedorDe(campo) { return campo.closest("[data-field]"); }
+
+    function pintarError(campo, mensaje) {
+      var caja = contenedorDe(campo);
+      if (!caja) { return; }
+      var salida = $(".error", caja);
+      if (mensaje) {
+        caja.setAttribute("data-invalid", "true");
+        campo.setAttribute("aria-invalid", "true");
+        if (salida) { salida.textContent = mensaje; }
+      } else {
+        caja.removeAttribute("data-invalid");
+        campo.removeAttribute("aria-invalid");
+        if (salida) { salida.textContent = ""; }
+      }
+    }
+
+    function validarCampo(campo) {
+      var regla = REGLAS[campo.name];
+      if (!regla) { return true; }
+      var mensaje = regla.valida(campo.value, campo);
+      pintarError(campo, mensaje);
+      return mensaje === "";
+    }
+
+    var campos = Object.keys(REGLAS)
+      .map(function (nombre) { return form.elements[nombre]; })
+      .filter(Boolean);
+
+    // Validación en vivo: al salir del campo y al corregir un campo marcado.
+    campos.forEach(function (campo) {
+      campo.addEventListener("blur", function () { validarCampo(campo); });
+      campo.addEventListener("input", function () {
+        var caja = contenedorDe(campo);
+        if (caja && caja.getAttribute("data-invalid") === "true") { validarCampo(campo); }
+      });
+      campo.addEventListener("change", function () {
+        if (campo.type === "checkbox" || campo.tagName === "SELECT") { validarCampo(campo); }
+      });
+    });
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();   // no hay servidor: nunca se envía
+
+      var primerFallo = null;
+      campos.forEach(function (campo) {
+        if (!validarCampo(campo) && !primerFallo) { primerFallo = campo; }
+      });
+
+      if (primerFallo) {
+        cajaResumen.hidden = true;
+        primerFallo.focus();
+        return;
+      }
+
+      // Construye el resumen con lo diligenciado.
+      var datos = [
+        ["Nombre",            form.elements.nombre.value.trim()],
+        ["Correo",            form.elements.correo.value.trim()],
+        ["Perfil",            form.elements.perfil.value],
+        ["Etapa de interés",  form.elements.interes.value],
+        ["Idea del sitio",    form.elements.idea.value.trim() || "No la indicaste"]
+      ];
+
+      listaResumen.innerHTML = datos.map(function (par) {
+        return "<dt>" + par[0] + "</dt><dd>" + escaparHTML(par[1]) + "</dd>";
+      }).join("");
+
+      cajaResumen.hidden = false;
+      cajaResumen.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    /* Convierte caracteres especiales en texto seguro antes de insertarlo.
+       Evita que lo escrito por el visitante se interprete como HTML. */
+    function escaparHTML(txt) {
+      var d = document.createElement("div");
+      d.textContent = String(txt);
+      return d.innerHTML;
+    }
+  })();
+
+  /* ==========================================================================
+     I. AÑO DEL PIE DE PÁGINA
+     ======================================================================== */
+  (function anio() {
+    var el = $("#anio");
+    if (el) { el.textContent = String(new Date().getFullYear()); }
+  })();
+
+})();
+</script>
+
+</body>
+</html>

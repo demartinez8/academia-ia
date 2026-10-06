@@ -1,0 +1,39 @@
+# ============================================================
+#  Archivos que NO deben subirse al repositorio público.
+#  Este proyecto no usa dependencias ni build: la lista es corta
+#  a propósito. Solo protege ruido local y datos sensibles.
+# ============================================================
+
+# --- Secretos: nunca deben llegar a un repositorio público ---
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+credenciales.*
+
+# --- Sistema operativo ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# --- Editores e IDE ---
+.vscode/
+.idea/
+*.sublime-workspace
+*.code-workspace
+
+# --- Archivos temporales y copias de seguridad ---
+*~
+*.bak
+*.tmp
+*.swp
+*.orig
+~$*
+
+# --- Entorno local (Laragon / servidor de pruebas) ---
+.htaccess.local
+*.log
