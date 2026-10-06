@@ -2,7 +2,7 @@
 
 **Curso:** IA aplicada y Automatización con IA
 **Autor del curso:** Julio Pastor Restrepo Zapata
-**Estudiante:** _(escribe aquí tu nombre)_
+**Estudiante:** David Esteban Martinez Moreno
 **Fecha:** 6 de octubre de 2026
 
 Este documento responde, en orden, a los nueve puntos exigidos en la sección 15 de la guía.
@@ -11,11 +11,9 @@ Este documento responde, en orden, a los nueve puntos exigidos en la sección 15
 
 ## 1. URL pública de GitHub Pages
 
-> ✏️ **Pendiente hasta que actives Pages.** Reemplaza esta línea con tu dirección real.
+**https://demartinez8.github.io/academia-ia/**
 
-```text
-https://TU-USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
-```
+Repositorio público: https://github.com/demartinez8/academia-ia
 
 Configuración aplicada: **Settings → Pages → Deploy from a branch → `main` → `/(root)`**.
 
@@ -271,8 +269,8 @@ campo de texto para ver qué pasaba.
 - [x] Comienza con `<!DOCTYPE html>`.
 - [x] Contiene `<body id="inicio">`.
 - [x] Termina con `</html>`.
-- [ ] GitHub Pages publica `main + /(root)`. *(pendiente: actívalo en tu repositorio)*
-- [ ] Mi URL abre correctamente. *(pendiente)*
+- [x] GitHub Pages publica `main + /(root)`.
+- [x] Mi URL abre correctamente.
 - [x] Probé menú y botones.
 - [x] Probé la interacción.
 - [x] Probé en tamaño móvil.

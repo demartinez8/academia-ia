@@ -9,11 +9,9 @@ Sitio web de una sola página, construido con asistencia de IA y publicado con *
 
 ## 🔗 Sitio publicado
 
-> ✏️ **Pendiente:** reemplaza esta línea con tu URL real después de activar GitHub Pages.
+**https://demartinez8.github.io/academia-ia/**
 
-```text
-https://TU-USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
-```
+Repositorio: https://github.com/demartinez8/academia-ia
 
 ---
 
